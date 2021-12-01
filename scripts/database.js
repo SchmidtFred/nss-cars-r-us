@@ -108,3 +108,19 @@ export const getWheels = () => {
 export const getOrders = () => {
     return database.orders.map(order => ({...order}));
 };
+
+export const setColor = (id) => {
+    database.orderBuilder.colorId = id;
+}
+
+export const setInterior = (id) => {
+    database.orderBuilder.intId = id;
+}
+
+export const setTechnology = (id) => {
+    database.orderBuilder.techId = id;
+}
+
+export const setWheel = (id) => {
+    database.orderBuilder.wheelId = id;
+}
