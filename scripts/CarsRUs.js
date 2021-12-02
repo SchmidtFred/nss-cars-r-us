@@ -2,6 +2,14 @@ import { wheelOptions } from "./wheels.js";
 import { colorOptions } from "./colors.js";
 import { interiorOptions } from "./interiors.js";
 import { techOptions } from "./technologies.js";
+import { orders } from "./orders.js";
+import { addOrder } from "./database.js";
+
+document.addEventListener("click", (event) => {
+    if (event.target.id ==="orderButton") {
+        addOrder();
+    };
+});
 
 export const CarsRUs = () => {
     return `
@@ -24,6 +32,15 @@ export const CarsRUs = () => {
             <h2>Wheels</h2>
             ${wheelOptions()}
         </section>
+    </article>
+
+    <article>
+        <button id="orderButton">Place Car Order</ button>
+    </article>
+
+    <article class="customOrders">
+        <h2>Custom Car Orders</h2>
+        ${orders()}
     </article>
     `;
 }

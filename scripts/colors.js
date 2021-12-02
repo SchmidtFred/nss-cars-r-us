@@ -4,7 +4,7 @@ const colors = getColors();
 
 // all other similar functions modeled off this one
 export const colorOptions = () => {
-    let html = '<select name="choice" id="colors">';
+    let html = '<select name="choice" id="colors">\n<option>Select a paint color</option>\n';
 
     //add in the options as an array
     const listItemsArray = colors.map((color) => {

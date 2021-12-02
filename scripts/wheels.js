@@ -4,7 +4,7 @@ const wheels = getWheels();
 
 // all other similar functions modeled off this one
 export const wheelOptions = () => {
-    let html = '<select name="choice" id="wheels">';
+    let html = '<select name="choice" id="wheels">\n<option>Select a wheel style</option>\n';
 
     //add in the options as an array
     const listItemsArray = wheels.map((wheel) => {
