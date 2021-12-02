@@ -41,7 +41,7 @@ const database = {
 		{
 			id: 3,
 			name: "White Leather",
-			price: 9.50
+			price: 9.5
 		},
 		{
 			id: 4,
@@ -60,7 +60,7 @@ const database = {
 		{
 			id: 2,
 			name: "Navigation Package",
-			price: 431.70
+			price: 431.7
 		},
 
 		{
@@ -102,6 +102,24 @@ const database = {
 		}
 	],
 
+	types: [
+		{
+			id: 1,
+			name: "Car",
+			priceMulti: 1
+		},
+		{
+			id: 2,
+			name: "SUV",
+			priceMulti: 1.5
+		},
+		{
+			id: 3,
+			name: "Truck",
+			priceMulti: 2.25
+		}
+	],
+
 	orders: []
 };
 
@@ -110,7 +128,7 @@ export const getColors = () => {
 };
 
 export const getInteriors = () => {
-    return database.interiors.map(int => ({...int}));
+	return database.interiors.map((int) => ({ ...int }));
 };
 
 export const getTechnologies = () => {
@@ -118,51 +136,65 @@ export const getTechnologies = () => {
 };
 
 export const getWheels = () => {
-    return database.wheels.map(wheel => ({...wheel}));
+	return database.wheels.map((wheel) => ({ ...wheel }));
+};
+
+export const getTypes = () => {
+	return database.types.map((type) => ({ ...type }));
 };
 
 export const getOrders = () => {
-    return database.orders.map(order => ({...order}));
+	return database.orders.map((order) => ({ ...order }));
 };
 
 export const setColor = (id) => {
-    database.orderBuilder.colorId = id;
-}
+	database.orderBuilder.colorId = id;
+};
 
 export const setInterior = (id) => {
-    database.orderBuilder.intId = id;
-}
+	database.orderBuilder.intId = id;
+};
 
 export const setTechnology = (id) => {
-    database.orderBuilder.techId = id;
-}
+	database.orderBuilder.techId = id;
+};
+
+export const setType = (id) => {
+	database.orderBuilder.typeId = id;
+};
 
 export const setWheel = (id) => {
-    database.orderBuilder.wheelId = id;
-}
+	database.orderBuilder.wheelId = id;
+};
 
 export const addOrder = () => {
-    //copy current orderBuilder
-    const newOrder = {...database.orderBuilder};
-    
-    //make sure we have a fk for each item
-    if(newOrder.colorId && newOrder.intId && newOrder.techId && newOrder.wheelId) {
-        //add in the id
-        if (database.orders.length > 0) {
-            const lastIndex = database.orders.length - 1;
-            newOrder.id = database.orders[lastIndex].id + 1;
-        } else {
-            newOrder.id = 1;
-        }
-        //timestamp
-        newOrder.timestamp = Date.now();
-        //add to the database
-        database.orders.push(newOrder);
-        //clear orderBuilder
-        database.orderBuilder = {};
-        //boradcast the now permanent state change
-        document.dispatchEvent(new CustomEvent("stateChanged"));
-    } else {
-        window.alert("Please make a selection for each option.");
-    }
-}
+	//copy current orderBuilder
+	const newOrder = { ...database.orderBuilder };
+
+	//make sure we have a fk for each item
+	if (
+		newOrder.colorId &&
+		newOrder.intId &&
+		newOrder.techId &&
+		newOrder.wheelId &&
+		newOrder.typeId
+	) {
+		//add in the id
+		if (database.orders.length > 0) {
+			const lastIndex = database.orders.length - 1;
+			newOrder.id = database.orders[lastIndex].id + 1;
+		} else {
+			newOrder.id = 1;
+		}
+		//timestamp
+		newOrder.timestamp = Date.now();
+		//add to the database
+		database.orders.push(newOrder);
+		//clear orderBuilder
+		database.orderBuilder = {};
+		//boradcast the now permanent state change
+		document.dispatchEvent(new CustomEvent("stateChanged"));
+	} else {
+		window.alert("Please make a selection for each option.");
+	}
+};

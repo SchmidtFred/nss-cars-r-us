@@ -2,6 +2,7 @@ import { wheelOptions } from "./wheels.js";
 import { colorOptions } from "./colors.js";
 import { interiorOptions } from "./interiors.js";
 import { techOptions } from "./technologies.js";
+import { typeOptions } from "./types.js";
 import { orders } from "./orders.js";
 import { addOrder } from "./database.js";
 
@@ -31,6 +32,10 @@ export const CarsRUs = () => {
         <section class="choicesWheels options">
             <h2>Wheels</h2>
             ${wheelOptions()}
+        </section>
+        <section class="choicesTypes options">
+            <h2>Body</h2>
+            ${typeOptions()}
         </section>
     </article>
 
