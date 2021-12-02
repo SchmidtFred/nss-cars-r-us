@@ -1,13 +1,9 @@
 import {
-	getColors,
-	getInteriors,
-	getOrders,
-	getTechnologies,
-	getWheels,
     setColor,
     setInterior,
     setTechnology,
-    setWheel
+    setWheel,
+    setType
 } from "./database.js";
 
 document.addEventListener("change", (changeEvent) => {
@@ -38,6 +34,10 @@ const saveToOrderBuilder = (targetArray, id) => {
 
         case "wheels":
             setWheel(id);
+            break;
+
+        case "types":
+            setType(id);
             break;
 
         default:
